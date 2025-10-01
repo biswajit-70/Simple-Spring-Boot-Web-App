@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 1s ease;
+        }
+        .form-box {
+            padding: 20px;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="form-box">
+        <h2>Login</h2>
+        <form th:action="@{/login}" method="post">
+            <input type="text" name="username" placeholder="Username" required><br><br>
+            <input type="password" name="password" placeholder="Password" required><br><br>
+            <button type="submit">Login</button>
+        </form>
+        <p th:if="${error}" th:text="${error}" style="color:red;"></p>
+        <p th:if="${message}" th:text="${message}" style="color:green;"></p>
+        <p><a th:href="@{/register}">Register</a></p>
+    </div>
+    <script>
+        const colors = ["#f0f8ff", "#ffe4e1", "#e6ffe6", "#fffacd"];
+        document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    </script>
+</body>
+</html>
