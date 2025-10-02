@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        maven 'MAVEN' // Adjust to match your Jenkins config
+        maven 'MAVEN'
     }
 
     stages {
@@ -20,8 +20,8 @@ pipeline {
 
         stage('Docker Cleanup') {
             steps {
-                // Remove conflicting container if it exists
                 sh 'docker rm -f mysql-db || true'
+                sh 'docker rm -f springboot-login-app || true'
             }
         }
 
@@ -34,7 +34,7 @@ pipeline {
 
         stage('Verify App') {
             steps {
-                sh 'sleep 20' // Wait for MySQL healthcheck
+                sh 'sleep 20'
                 sh 'curl -f http://localhost:8080/login || exit 1'
             }
         }
